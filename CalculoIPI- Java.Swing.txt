@@ -1,0 +1,86 @@
+/* Calculo com IPI
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.calculoipi;
+
+/**
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CalculoIPI extends JFrame {
+    private JTextField txtIPI, txtCod1, txtValor1, txtQuant1, txtCod2, txtValor2, txtQuant2;
+    private JButton btnCalcular;
+    private JLabel lblResultado;
+
+    public CalculoIPI() {
+        setTitle("Cálculo de IPI");
+        setSize(400, 350);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(9, 2, 5, 5));
+
+        // Campos para entrada
+        add(new JLabel("Porcentagem do IPI (%):"));
+        txtIPI = new JTextField();
+        add(txtIPI);
+
+        add(new JLabel("Código da Peça 1:"));
+        txtCod1 = new JTextField();
+        add(txtCod1);
+
+        add(new JLabel("Valor Unitário da Peça 1:"));
+        txtValor1 = new JTextField();
+        add(txtValor1);
+
+        add(new JLabel("Quantidade da Peça 1:"));
+        txtQuant1 = new JTextField();
+        add(txtQuant1);
+
+        add(new JLabel("Código da Peça 2:"));
+        txtCod2 = new JTextField();
+        add(txtCod2);
+
+        add(new JLabel("Valor Unitário da Peça 2:"));
+        txtValor2 = new JTextField();
+        add(txtValor2);
+
+        add(new JLabel("Quantidade da Peça 2:"));
+        txtQuant2 = new JTextField();
+        add(txtQuant2);
+
+        btnCalcular = new JButton("Calcular Total");
+        add(btnCalcular);
+
+        lblResultado = new JLabel("Valor total com IPI: ");
+        add(lblResultado);
+
+        // Ação do botão
+        btnCalcular.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double ipi = Double.parseDouble(txtIPI.getText());
+                    double valor1 = Double.parseDouble(txtValor1.getText());
+                    int quant1 = Integer.parseInt(txtQuant1.getText());
+                    double valor2 = Double.parseDouble(txtValor2.getText());
+                    int quant2 = Integer.parseInt(txtQuant2.getText());
+
+                    double total = (valor1 * quant1 + valor2 * quant2) * (ipi / 100 + 1);
+                    lblResultado.setText(String.format("Valor total com IPI: R$ %.2f", total));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente (números válidos).");
+                }
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new CalculoIPI();
+    }
+}
+

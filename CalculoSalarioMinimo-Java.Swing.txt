@@ -1,0 +1,59 @@
+/*Como calculo o salário mínimo com Java.swing
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.calculosalariominimo;
+
+/** 
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CalculoSalarioMinimo extends JFrame {
+    private JTextField txtSalario;
+    private JLabel lblResultado;
+    private JButton btnCalcular;
+
+    public CalculoSalarioMinimo() {
+        setTitle("Calculadora de Salários Mínimos");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new FlowLayout());
+
+        JLabel lblSalario = new JLabel("Digite seu salário (R$):");
+        txtSalario = new JTextField(10);
+        btnCalcular = new JButton("Calcular");
+        lblResultado = new JLabel("Você recebe quantos salários mínimos?");
+
+        btnCalcular.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double salario = Double.parseDouble(txtSalario.getText());
+                    double salarioMinimo = 1000.00;
+                    double quantidade = salario / salarioMinimo;
+                    lblResultado.setText(String.format("Você recebe %.2f salários mínimos.", quantidade));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, insira um valor válido.");
+                }
+            }
+        });
+
+        add(lblSalario);
+        add(txtSalario);
+        add(btnCalcular);
+        add(lblResultado);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new CalculoSalarioMinimo().setVisible(true);
+            }
+        });
+    }
+}
+

@@ -1,0 +1,56 @@
+/*Rajuste de saldo
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.reajustesaldo;
+
+/**
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ReajusteSaldo extends JFrame {
+    private JTextField txtSaldo;
+    private JButton btnCalcular;
+    private JLabel lblResultado;
+
+    public ReajusteSaldo() {
+        setTitle("Reajuste de Saldo");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        add(new JLabel("Informe o saldo:"));
+        txtSaldo = new JTextField(10);
+        add(txtSaldo);
+
+        btnCalcular = new JButton("Calcular Reajuste");
+        add(btnCalcular);
+
+        lblResultado = new JLabel("Saldo reajustado: ");
+        add(lblResultado);
+
+        btnCalcular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double saldo = Double.parseDouble(txtSaldo.getText());
+                    double reajustado = saldo * 1.01;
+                    lblResultado.setText(String.format("Saldo reajustado: R$ %.2f", reajustado));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, digite um valor numérico válido.");
+                }
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ReajusteSaldo();
+    }
+}
+

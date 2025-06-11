@@ -1,0 +1,67 @@
+/*Criando um algoritmo para calcular a idade em dias
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.idadeemdia;
+
+/**
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class IdadeEmDia extends JFrame {
+    private JTextField txtAnos, txtMeses, txtDias;
+    private JButton btnCalcular;
+    private JLabel lblResultado;
+
+    public IdadeEmDia() {
+        setTitle("Calculadora de Idade em Dias");
+        setSize(300, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        add(new JLabel("Anos:"));
+        txtAnos = new JTextField(10);
+        add(txtAnos);
+
+        add(new JLabel("Meses:"));
+        txtMeses = new JTextField(10);
+        add(txtMeses);
+
+        add(new JLabel("Dias:"));
+        txtDias = new JTextField(10);
+        add(txtDias);
+
+        btnCalcular = new JButton("Calcular Dias");
+        add(btnCalcular);
+
+        lblResultado = new JLabel("Total em dias: ");
+        add(lblResultado);
+
+        btnCalcular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int anos = Integer.parseInt(txtAnos.getText());
+                    int meses = Integer.parseInt(txtMeses.getText());
+                    int dias = Integer.parseInt(txtDias.getText());
+
+                    int totalDias = (anos * 365) + (meses * 30) + dias;
+
+                    lblResultado.setText("Total em dias: " + totalDias);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, insira apenas números inteiros.");
+                }
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new IdadeEmDia();
+    }
+}

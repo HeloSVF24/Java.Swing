@@ -1,0 +1,59 @@
+/*calcular as mÃ©dias
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.mediaswing;
+
+/**
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MediaSwing extends JFrame {
+    private JButton btnCalcular;
+    private JTextArea resultadoArea;
+
+    public MediaSwing() {
+        setTitle("CÃ¡lculo de MÃ©dias");
+        setSize(350, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        btnCalcular = new JButton("Calcular MÃ©dias");
+        resultadoArea = new JTextArea(6, 25);
+        resultadoArea.setEditable(false);
+
+        add(btnCalcular);
+        add(new JScrollPane(resultadoArea));
+
+        btnCalcular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double media1 = (8 + 9 + 7) / 3.0;
+                double media2 = (4 + 5 + 6) / 3.0;
+                double soma = media1 + media2;
+                double mediaDasMedias = soma / 2.0;
+
+                String resultado = String.format(
+                    "MÃ©dia de 8, 9 e 7: %.2f\n" +
+                    "MÃ©dia de 4, 5 e 6: %.2f\n" +
+                    "Soma das mÃ©dias: %.2f\n" +
+                    "MÃ©dia das mÃ©dias: %.2f",
+                    media1, media2, soma, mediaDasMedias
+                );
+
+                resultadoArea.setText(resultado);
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new MediaSwing();
+    }
+}

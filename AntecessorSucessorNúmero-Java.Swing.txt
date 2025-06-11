@@ -1,0 +1,62 @@
+/*O antecessor e sucessor de um número
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.antecessorsucessorswing;
+
+/**
+ *
+ * @author Heloisa Silva 1 DS/AMS
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class AntecessorSucessorSwing extends JFrame {
+    private JTextField txtNumero;
+    private JLabel lblAntecessor, lblSucessor;
+    private JButton btnCalcular;
+
+    public AntecessorSucessorSwing() {
+        setTitle("Antecessor e Sucessor");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new FlowLayout());
+
+        JLabel lblInstrucao = new JLabel("Digite um número inteiro:");
+        txtNumero = new JTextField(10);
+        btnCalcular = new JButton("Calcular");
+        lblAntecessor = new JLabel("Antecessor: ");
+        lblSucessor = new JLabel("Sucessor: ");
+
+        btnCalcular.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int numero = Integer.parseInt(txtNumero.getText());
+                    int antecessor = numero - 1;
+                    int sucessor = numero + 1;
+                    lblAntecessor.setText("Antecessor: " + antecessor);
+                    lblSucessor.setText("Sucessor: " + sucessor);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+                }
+            }
+        });
+
+        add(lblInstrucao);
+        add(txtNumero);
+        add(btnCalcular);
+        add(lblAntecessor);
+        add(lblSucessor);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new AntecessorSucessorSwing().setVisible(true);
+            }
+        });
+    }
+}
+
